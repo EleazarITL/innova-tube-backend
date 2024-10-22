@@ -1,10 +1,11 @@
 {
   "name": "innovatube-backend",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "build/index.js",
   "scripts": {
-    "build": "tsc --w",
-    "dev": "nodemon build/index.js"
+    "build": "tsc",
+    "dev": "nodemon build/index.js",
+    "start": "node build/index.js"
   },
   "keywords": [],
   "author": "",

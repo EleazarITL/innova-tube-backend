@@ -9,7 +9,7 @@ const pool = new Pool({
   host: process.env.PGHOST,
   database: process.env.PGDATABASE,
   password: process.env.PGPASSWORD,
-  port: Number(process.env.PGPORT), // Convierte a número
+  port: Number(process.env.PGPORT)
 });
 
 async function connectDB() {

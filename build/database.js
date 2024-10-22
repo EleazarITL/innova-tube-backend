@@ -21,7 +21,7 @@ const pool = new pg_1.Pool({
     host: process.env.PGHOST,
     database: process.env.PGDATABASE,
     password: process.env.PGPASSWORD,
-    port: Number(process.env.PGPORT), // Convierte a número
+    port: Number(process.env.PGPORT)
 });
 function connectDB() {
     return __awaiter(this, void 0, void 0, function* () {
