@@ -1,6 +1,7 @@
 import express, { Application } from 'express';
 import morgan from 'morgan';
 import cors from 'cors';
+import path from 'path';
 
 import indexRoutes from './routes/indexRoutes';
 import autenticacionRoutes from './routes/autenticacionRoutes';
@@ -13,6 +14,7 @@ class Server {
         this.app = express();
         this.config();
         this.routes();
+        this.handleAngularRoutes(); // Agregar manejo de rutas para Angular
     }
 
     config(): void {
@@ -29,12 +31,22 @@ class Server {
 
         this.app.use(express.json());
         this.app.use(express.urlencoded({ extended: false }));
+
+        // Servir archivos estáticos
+        this.app.use(express.static(path.join(__dirname, 'dist/innova-tube/browser')));
     }
 
     routes(): void {
         this.app.use(indexRoutes);
         this.app.use('/api/videos', videosRoutes);
         this.app.use('/api/autenticacion', autenticacionRoutes);
+    }
+
+    handleAngularRoutes(): void {
+        // Manejo de rutas para Angular
+        this.app.get('*', (req, res) => {
+            res.sendFile(path.join(__dirname, 'dist/innova-tube/browser/index.html'));
+        });
     }
 
     start(): void {
